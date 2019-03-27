@@ -1,6 +1,6 @@
 {
   "name": "electron-app",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "author": "RyHiLL",
   "description": "A minimal Electron application",
   "main": "main.js",
