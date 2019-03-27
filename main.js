@@ -111,17 +111,10 @@ autoUpdater.on('update-downloaded', info => {
 });
 
 autoUpdater.on('update-downloaded', info => {
+  setTimeout(() => {
+    autoUpdater.quitAndInstall();
+  }, 16000);
 
-  dialog.showMessageBox({
-    type: 'info',
-    title: 'Update Ready',
-    message: 'A new version of app is ready. Quit and Install now?',
-    buttons: ['Yes', 'Later']
-}, (index) => {
-    if (!index) {
-        autoUpdater.quitAndInstall();
-    }
-});
 
 
 

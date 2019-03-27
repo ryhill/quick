@@ -1,23 +1,18 @@
 {
   "name": "electron-app",
-  "version": "1.0.0",
+  "version": "4.0.0",
   "author": "RyHiLL",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder",
-    "gh-publish": "electron-builder --x64 --mac -p always"
+    "dist": "electron-builder"   
   },
   "repository": "https://github.com/ryhill/quick.git",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "quick"
   ],
+  "postinstall": "electron-builder install-app-deps",
   "win": {
     "publish": ["github"]
   },
@@ -32,12 +27,13 @@
   "build": {
     "appId": "com.myfirmdata.mfd",
     "productName": "myFirmDatat",
-    "artifactName": "${productName}.${ext}",
+    "artifactName": "${productName}-setup-${version}.${ext}",
     "target": "NSIS",
     "icon": "build/icons/mfd.ico",
     "directories": {
       "output": "build"
     },
+
     "nsis": {
       "allowToChangeInstallationDirectory": "true",
       "oneClick": "false"
