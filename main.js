@@ -57,13 +57,6 @@ app.on('ready', function()  {
 
 
 
-app.on('ready', function() {
-  // Create the Menu
-  // const menu = Menu.buildFromTemplate(template);
-  // Menu.setApplicationMenu(menu);
-
-  createWindow();
-});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
