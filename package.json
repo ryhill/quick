@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist":"electron-builder --x64 --mac"
+    "dist":"electron-builder"
   },
   "repository": "https://github.com/ryhill/quick",
   "keywords": [
@@ -27,9 +27,9 @@
   },
   "build": {
     "appId": "com.myfirmdata.mfd",
-    "productName": "myFirmData",
+    "productName": "myFirmDatat",
+    "artifactName": "${productName}.${ext}",
     "target":"NSIS",
-    "icon":"mfd.ico",
     "directories":{
       "output": "build"
     },
@@ -37,6 +37,7 @@
       "allowToChangeInstallationDirectory":"true",
       "oneClick" : "false"
     }
+
   
     }
   }

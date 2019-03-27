@@ -52,7 +52,7 @@ function createWindow() {
   });
 
   // trigger autoupdate check
-  autoUpdater.checkForUpdates();
+  autoUpdater.checkForUpdatesAndNotify();
 }
 
 // This method will be called when Electron has finished
