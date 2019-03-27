@@ -1,13 +1,13 @@
 {
   "name": "electron-app",
   "version": "1.0.0",
-  "author":"RyHiLL",
+  "author": "RyHiLL",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist":"electron-builder"
+    "dist": "electron-builder"
   },
   "repository": "https://github.com/ryhill/quick",
   "keywords": [
@@ -19,26 +19,24 @@
   ],
   "devDependencies": {
     "electron": "^4.1.1",
-    "electron-builder": "^20.39.0",
-    "electron-updater": "^4.0.6"
+    "electron-builder": "^20.39.0" 
   },
   "dependencies": {
-    "electron-log": "^3.0.3"
+    "electron-log": "^3.0.3",
+    "electron-updater": "^4.0.6"
   },
   "build": {
     "appId": "com.myfirmdata.mfd",
     "productName": "myFirmDatat",
     "artifactName": "${productName}.${ext}",
-    "target":"NSIS",
-    "directories":{
+    "target": "NSIS",
+    "icon": "build/icons/mfd.ico",
+    "directories": {
       "output": "build"
     },
-    "nsis":{
-      "allowToChangeInstallationDirectory":"true",
-      "oneClick" : "false"
-    }
-
-  
+    "nsis": {
+      "allowToChangeInstallationDirectory": "true",
+      "oneClick": "false"
     }
   }
-  
+}
