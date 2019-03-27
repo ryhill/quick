@@ -1,6 +1,6 @@
 {
   "name": "electron-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "RyHiLL",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -10,7 +10,7 @@
     "dist": "electron-builder",
     "gh-publish": "electron-builder --x64 --mac -p always"
   },
-  "repository": "https://github.com/ryhill/quick",
+  "repository": "https://github.com/ryhill/quick.git",
   "keywords": [
     "Electron",
     "quick",
