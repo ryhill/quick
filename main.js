@@ -15,6 +15,8 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
+const dialog = electron.dialog;
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -41,7 +43,7 @@ function createWindow() {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
- // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
@@ -52,7 +54,7 @@ function createWindow() {
   });
 
   // trigger autoupdate check
-  autoUpdater.checkForUpdates();
+  autoUpdater.checkForUpdatesAndNotify();
 }
 
 // This method will be called when Electron has finished
@@ -109,8 +111,18 @@ autoUpdater.on('update-downloaded', info => {
 });
 
 autoUpdater.on('update-downloaded', info => {
-  // Wait 5 seconds, then quit and install
-  // In your application, you don't need to wait 500 ms.
-  // You could call autoUpdater.quitAndInstall(); immediately
-  autoUpdater.quitAndInstall();
+
+  dialog.showMessageBox({
+    type: 'info',
+    title: 'Update Ready',
+    message: 'A new version of app is ready. Quit and Install now?',
+    buttons: ['Yes', 'Later']
+}, (index) => {
+    if (!index) {
+        autoUpdater.quitAndInstall();
+    }
+});
+
+
+
 });
