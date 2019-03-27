@@ -1,7 +1,5 @@
 // npm packages
-const url = require('url');
-const path = require('path');
-const electron = require('electron');
+const {app, BrowserWindow, Menu, protocol, ipcMain} = require('electron');
 const {autoUpdater} = require('electron-updater');
 const log = require('electron-log');
 
@@ -62,32 +60,7 @@ app.on('ready', function()  {
 });
 
 
-function sendStatusToWindow(text) {
-  log.info(text);
-  win.webContents.send('message', text);
-}
 
-autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
-})
-autoUpdater.on('update-available', (info) => {
-  sendStatusToWindow('Update available.');
-})
-autoUpdater.on('update-not-available', (info) => {
-  sendStatusToWindow('Update not available.');
-})
-autoUpdater.on('error', (err) => {
-  sendStatusToWindow('Error in auto-updater. ' + err);
-})
-autoUpdater.on('download-progress', (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
-  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  sendStatusToWindow(log_message);
-})
-autoUpdater.on('update-downloaded', (info) => {
-  sendStatusToWindow('Update downloaded');
-});
 app.on('ready', function() {
   // Create the Menu
   const menu = Menu.buildFromTemplate(template);
@@ -121,30 +94,57 @@ app.on('activate', function() {
 //-------------------------------------------------------------------
 // Auto updates
 //-------------------------------------------------------------------
-// const sendStatusToWindow = (text) => {
-//   log.info(text);
-//   if (mainWindow) {
-//     mainWindow.webContents.send('message', text);
-//   }
-// };
+const sendStatusToWindow = (text) => {
+  log.info(text);
+  if (mainWindow) {
+    mainWindow.webContents.send('message', text);
+  }
+};
 
-// autoUpdater.on('checking-for-update', () => {
-//   sendStatusToWindow('Checking for update...');
-// });
-// autoUpdater.on('update-available', info => {
-//   sendStatusToWindow('Update available.');
-// });
-// autoUpdater.on('update-not-available', info => {
-//   sendStatusToWindow('Update not available.');
-// });
-// autoUpdater.on('error', err => {
-//   sendStatusToWindow(`Error in auto-updater: ${err.toString()}`);
-// });
-// autoUpdater.on('download-progress', progressObj => {
-//   sendStatusToWindow(
-//     `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}% (${progressObj.transferred} + '/' + ${progressObj.total} + )`
-//   );
-// });
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...');
+});
+autoUpdater.on('update-available', info => {
+  sendStatusToWindow('Update available.');
+});
+autoUpdater.on('update-not-available', info => {
+  sendStatusToWindow('Update not available.');
+});
+autoUpdater.on('error', err => {
+  sendStatusToWindow(`Error in auto-updater: ${err.toString()}`);
+});
+autoUpdater.on('download-progress', progressObj => {
+  sendStatusToWindow(
+    `Download speed: ${progressObj.bytesPerSecond} - Downloaded ${progressObj.percent}% (${progressObj.transferred} + '/' + ${progressObj.total} + )`
+  );
+});
+
+autoUpdater.on('update-downloaded', info => {
+  sendStatusToWindow('Update downloaded; will install now');
+});
+
+
+autoUpdater.on(
+  'update-downloaded',
+  (event, releaseNotes, releaseName) => {
+    console.log('Update downloaded')
+    dialog.showMessageBox({
+      type: 'question',
+      buttons: ['Update', 'Cancel'],
+      defaultId: 0,
+      message: `Version ${releaseName} is available, do you want to install it now?`,
+      title: 'Update available'
+    }, response => {
+      if (response === 0) {
+        electron.autoUpdater.quitAndInstall()
+      }
+    })
+  }
+)
+
+
+
+
 // autoUpdater.on('update-downloaded', info => {
 //   sendStatusToWindow('Update downloaded; will install now');
 // });
@@ -153,8 +153,4 @@ app.on('activate', function() {
 //   setTimeout(() => {
 //     autoUpdater.quitAndInstall();
 //   }, 3500);
-
-
-
-
 // });
