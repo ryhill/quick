@@ -113,30 +113,30 @@ autoUpdater.on('update-downloaded', info => {
 });
 
 
-autoUpdater.on(
-  'update-downloaded',
-  (event, releaseNotes, releaseName) => {
-    console.log('Update downloaded')
-    dialog.showMessageBox({
-      type: 'question',
-      buttons: ['Update', 'Cancel'],
-      defaultId: 0,
-      message: `Version ${releaseName} is available, do you want to install it now?`,
-      title: 'Update available'
-    }, response => {
-      if (response === 0) {
-        electron.autoUpdater.quitAndInstall()
-      }
-    })
-  }
-)
+// autoUpdater.on(
+//   'update-downloaded',
+//   (event, releaseNotes, releaseName) => {
+//     console.log('Update downloaded')
+//     dialog.showMessageBox({
+//       type: 'question',
+//       buttons: ['Update', 'Cancel'],
+//       defaultId: 0,
+//       message: `Version ${releaseName} is available, do you want to install it now?`,
+//       title: 'Update available'
+//     }, response => {
+//       if (response === 0) {
+//         electron.autoUpdater.quitAndInstall()
+//       }
+//     })
+//   }
+// )
 
 
 
 
-// autoUpdater.on('update-downloaded', info => {
-//   sendStatusToWindow('Update downloaded; will install now');
-// });
+autoUpdater.on('update-downloaded', info => {
+  sendStatusToWindow('Update downloaded; will install now');
+});
 
 // autoUpdater.on('update-downloaded', info => {
 //   setTimeout(() => {
