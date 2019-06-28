@@ -9,6 +9,8 @@ autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 
 
+const isOnline = require('is-online');
+// console.log(await isOnline());
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -34,7 +36,21 @@ function createWindow() {
   //   })
   // );
 
-  mainWindow.loadFile('index.html')
+  (async () => {
+    console.log(await isOnline());
+    if(await isOnline()){
+  
+      mainWindow.loadFile('index.html')
+    }else{
+  
+      mainWindow.loadFile('no_connection.html')
+    }
+    //=> true
+  })();
+
+
+
+
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();

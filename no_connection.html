@@ -1,0 +1,141 @@
+<html>
+
+<head>
+  <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link href="css/pages/home.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: #fff;
+    }
+
+    .glyphicon {
+      line-height: 0;
+    }
+
+    .home-page .navbar-custom .nav.navbar-nav {
+      background: none;
+    }
+
+    .navbar {
+      min-height: 60px;
+      background: #0994cc !important;
+    }
+
+    .center h3 {
+      margin-top: 6%;
+    }
+
+    .btn {
+      color: #fff;
+      background: #0994cc;
+    }
+
+    .navbar {
+      min-height: 60px;
+      background: #0994cc !important;
+    }
+    .nointernet a {
+      font-family: 'Cabin', sans-serif;
+      display: inline-block;
+      padding: 10px 30px;
+      background-color: #0994cc;
+      border: none;
+      border-radius: 40px;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: none;
+      -webkit-transition: 0.2s all;
+      transition: 0.2s all;
+    }
+
+    .nointernet a:hover {
+      background-color: #ff4f50;
+      border: none !important;
+    }
+
+    .nointernet a:focus,
+    .nointernet a:visited {
+      border: none !important;
+    }
+
+    @media (max-width:720px) {
+      .home-page #logo {
+        margin-top: -19px !important;
+      }
+    }
+
+    @media (max-width:480px) {
+      .home-page #logo {
+        margin-top: -19px !important;
+      }
+    }
+  </style>
+  <script>
+    var close_window = function () {
+
+      const { dialog, BrowserWindow } = require('electron').remote;
+      var fWindow = BrowserWindow.getFocusedWindow();
+      fWindow.destroy()
+
+    };
+  </script>
+</head>
+
+<body>
+  <div class="home-page get_touch">
+    <nav class="navbar navbar-custom navbar-fixed-top shrink">
+      <div class="container" id="header-section">
+        <a class="navbar-brand">
+          <img id="logo" src="./img/scdlogo.png" alt="logo">
+        </a>
+      </div>
+    </nav>
+    <section id="contact" class="text-center" style="background-color: #fff;padding-top:30px">
+      <div class="container">
+        <div class="center">
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+          <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+                    <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+                    <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+                    <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+                    <h3 style="font-weight:600;padding-top: 26px;"> No Internet Connection </h3>
+        </div>
+      </div>
+      <div class="container" style="background-color: #fff;padding-top:20px">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="boxed-grey">
+              <div class="row">
+                <div class="">
+                  <img src="./img/noconnection2.png" alt="noconnection">
+                </div>
+                <div class="nointernet">
+                  <h2 style="font-size: 20px; padding-bottom: 5px;"><b>Sorry, We couldn't connect to
+                      myFirmData</b></h2>
+                  <p style="font-size: 15px; padding-bottom: 15px;"> Please check your internet
+                    connection and try again</p>
+                  <a onclick="close_window()"> Ok </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

@@ -1,12 +1,12 @@
 {
   "name": "electron-app",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "author": "RyHiLL",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"   
+    "dist": "electron-builder"
   },
   "repository": "https://github.com/ryhill/quick.git",
   "keywords": [
@@ -14,15 +14,18 @@
   ],
   "postinstall": "electron-builder install-app-deps",
   "win": {
-    "publish": ["github"]
+    "publish": [
+      "github"
+    ]
   },
   "devDependencies": {
     "electron": "^4.1.1",
-    "electron-builder": "^20.39.0" 
+    "electron-builder": "^20.39.0"
   },
   "dependencies": {
     "electron-log": "^3.0.3",
-    "electron-updater": "^4.0.6"
+    "electron-updater": "^4.0.6",
+    "is-online": "^8.2.0"
   },
   "build": {
     "appId": "com.myfirmdata.mfd",
@@ -33,7 +36,6 @@
     "directories": {
       "output": "build"
     },
-
     "nsis": {
       "allowToChangeInstallationDirectory": "true",
       "oneClick": "false"
