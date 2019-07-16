@@ -11,8 +11,8 @@ log.info('App starting...');
 
 const isOnline = require('is-online');
 // console.log(await isOnline());
-
-
+const pjson = require(__dirname + '/package.json');
+let appversion = pjson.version;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -107,16 +107,16 @@ const sendStatusToWindow = (text) => {
 };
 
 autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
+  sendStatusToWindow('Checking for update...' + appversion);
 });
 autoUpdater.on('update-available', info => {
-  sendStatusToWindow('Update available.');
+  sendStatusToWindow('Update available.' + appversion);
 });
 autoUpdater.on('update-not-available', info => {
-  sendStatusToWindow('Update not available.');
+  sendStatusToWindow('Update not available.' + appversion);
 });
 autoUpdater.on('error', err => {
-  sendStatusToWindow(`Error in auto-updater: ${err.toString()}`);
+  sendStatusToWindow('Error in auto-updater: ${err.toString()}' + appversion);
 });
 autoUpdater.on('download-progress', progressObj => {
   sendStatusToWindow(
@@ -125,7 +125,7 @@ autoUpdater.on('download-progress', progressObj => {
 });
 
 autoUpdater.on('update-downloaded', info => {
-  sendStatusToWindow('Update downloaded; will install now');
+  sendStatusToWindow('Update downloaded; will install now' + appversion);
 });
 
 
