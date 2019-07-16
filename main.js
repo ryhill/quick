@@ -152,6 +152,9 @@ autoUpdater.on('update-downloaded', info => {
 
 autoUpdater.on('update-downloaded', info => {
   sendStatusToWindow('Update downloaded; will install now');
+    setTimeout(() => {
+    autoUpdater.quitAndInstall();
+  }, 3500);
 });
 
 // autoUpdater.on('update-downloaded', info => {
